@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var destinationType;
 var app = {
     // Application Constructor
     initialize: function() {
@@ -28,6 +29,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        destinationType = navigator.camera.DestinationType;
     },
 
     // Update DOM on a Received Event
@@ -42,5 +44,27 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+function onPhotoDataSuccess(imageData) {
+  var smallImage = document.getElementById('smallImage');
+  smallImage.style.display = 'block';
+  smallImage.src = "data:image/jpeg;base64," + imageData;
+  console.log(imageData);
+  // Display the image
+  // Send the image to backend
+  // Share the image
+}
+
+function onFail(message) {
+  console.log(message);
+}
+
+function capturePhoto() {
+  var options = {
+    quality: 50,
+    destinationType: destinationType.DATA_URL
+  }
+  navigator.camera.getPicture(onPhotoDataSuccess, onFail, {})
+}
 
 app.initialize();
