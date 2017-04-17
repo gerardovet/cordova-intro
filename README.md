@@ -9,3 +9,11 @@ Class contents
 5. Agregar Android `cordova platform add android --save`
 6. Agregar IOS `cordova platform add ios --save`
 7. cordova run android --device
+
+# Take Photo
+1. cordova plugin add cordova-plugin-camera
+2. Add code to take picture
+
+# Device platform
+1. cordova plugin add cordova-plugin-device
+2. device.platform code
